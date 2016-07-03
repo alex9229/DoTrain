@@ -22,11 +22,12 @@ import static almik.dotrain.R.id.containerdown;
 public class SplashScreen extends Fragment {
 
 
-
-
     private static SplashScreen instanse;
+
     public static SplashScreen getInstance() {
-        if (instanse==null){instanse = new SplashScreen();}
+        if (instanse == null) {
+            instanse = new SplashScreen();
+        }
         return instanse;
     }
 

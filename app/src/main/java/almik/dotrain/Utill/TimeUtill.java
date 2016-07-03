@@ -15,11 +15,11 @@ public class TimeUtill {
     private TextView tvTime;
     private Integer time;
 
-    public void ModeTime(TextView tvTime, Integer time ){
-       this.tvTime = tvTime;
-        MyTask myTask=new MyTask();
+    public void ModeTime(TextView tvTime, Integer time) {
+        this.tvTime = tvTime;
+        MyTask myTask = new MyTask();
         myTask.execute();
-        this.time=time;
+        this.time = time;
     }
 
     class MyTask extends AsyncTask<Void, Integer, Void> {
@@ -31,7 +31,8 @@ public class TimeUtill {
 
         @Override
         protected Void doInBackground(Void... params) {
-            try {int counter = 0;
+            try {
+                int counter = 0;
                 for (int i = 0; i < time; i++) {
                     TimeUnit.SECONDS.sleep(1);
                     publishProgress(++counter);
@@ -48,10 +49,11 @@ public class TimeUtill {
             Rest.getInstance().EndRest();
 
         }
+
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-           tvTime.setText(Integer.toString(time- values[0])+" сек.");
+            tvTime.setText(Integer.toString(time - values[0]) + " сек.");
         }
     }
 

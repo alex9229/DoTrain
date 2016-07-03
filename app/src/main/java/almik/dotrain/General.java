@@ -13,6 +13,7 @@ import static almik.dotrain.R.id.containerdown;
 
 public class General extends Activity {
     public FragmentTransaction fragTrans;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -21,7 +21,7 @@ import almik.dotrain.R;
 import static almik.dotrain.R.id.containerdown;
 
 
-public class Exercise extends Fragment implements View.OnTouchListener{
+public class Exercise extends Fragment implements View.OnTouchListener {
     Integer count;// счетчик
     TextView tvCount;
     private static Exercise exercise;
@@ -33,7 +33,9 @@ public class Exercise extends Fragment implements View.OnTouchListener{
 
 
     public static Exercise getInstance() {
-        if (exercise==null){exercise=new Exercise();}
+        if (exercise == null) {
+            exercise = new Exercise();
+        }
         return exercise;
     }
 
@@ -46,8 +48,8 @@ public class Exercise extends Fragment implements View.OnTouchListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_exercise, container, false);
-        FrameLayout ll =(FrameLayout)view.findViewById(R.id.FLexercise);
+        View view = inflater.inflate(R.layout.fragment_exercise, container, false);
+        FrameLayout ll = (FrameLayout) view.findViewById(R.id.FLexercise);
         ll.setOnTouchListener(this);// Устанавливаем данный класс в качестве слушателя MotionEvent'ов для нашего LinearLayout
 //        Intent intentfrom = getIntent();
 //        count=Integer.parseInt(intentfrom.getStringExtra(getString(R.string.countInIntentToMain)));
@@ -55,10 +57,10 @@ public class Exercise extends Fragment implements View.OnTouchListener{
 //        КОСТЫЛЬ
 //
 
-            sPref = getActivity().getSharedPreferences(getString(R.string.idShared), 1);
-            count = Integer.parseInt(sPref.getString(getString(R.string.TimeForRest), ""));
+        sPref = getActivity().getSharedPreferences(getString(R.string.idShared), 1);
+        count = Integer.parseInt(sPref.getString(getString(R.string.TimeForRest), ""));
 
-        tvCount=(TextView)view.findViewById(R.id.tvCount);
+        tvCount = (TextView) view.findViewById(R.id.tvCount);
         return view;
     }
 
@@ -66,20 +68,18 @@ public class Exercise extends Fragment implements View.OnTouchListener{
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         count = Integer.parseInt(sPref.getString(getString(R.string.Count), ""));
-        if(count>1) {
-            System.out.println(count);
+        if (count > 1) {
             tvCount.setText("вам осталось " + count + " повторений");
             FragmentTransaction fragTrans;
             fragTrans = getFragmentManager().beginTransaction();    ///set the fragment
             fragTrans.replace(containerdown, Rest.getInstance());
             fragTrans.commit();
-        }else{
+        } else {
 
-            System.out.println("saedfsadfsdfsdfsdf");
 
             AlertDialog.Builder ad;
             Context context;
-            context =getActivity();
+            context = getActivity();
             ad = new AlertDialog.Builder(context);
             ad.setTitle(R.string.TitleDialogfinish);  // заголовок
             ad.setMessage(R.string.messageMoreExercises); // сообщение

@@ -47,7 +47,6 @@ public class TimeUtill {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             Rest.getInstance().EndRest();
-
         }
 
         @Override

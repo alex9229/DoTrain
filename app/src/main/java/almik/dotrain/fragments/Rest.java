@@ -52,13 +52,16 @@ public class Rest extends Fragment {
 
     public void EndRest() {
         SharedPreferences.Editor ed = sPref.edit();
-        ed.putString(getString(R.string.Count), Integer.toString(Integer.parseInt(sPref.getString(getString(R.string.Count), "")) - 1));
-        ed.commit();
-        if (Integer.parseInt(sPref.getString(getString(R.string.Count), "")) != 0) {
-            FragmentTransaction fragTrans = getFragmentManager().beginTransaction();
-            fragTrans.replace(containerdown, Exercise.getInstance());
-            fragTrans.commit();
-        }
+        //TODO remove this
+        try {
+            ed.putString(getString(R.string.Count), Integer.toString(Integer.parseInt(sPref.getString(getString(R.string.Count), "")) - 1));
+            ed.commit();
+            if (Integer.parseInt(sPref.getString(getString(R.string.Count), "")) != 0) {
+                FragmentTransaction fragTrans = getFragmentManager().beginTransaction();
+                fragTrans.replace(containerdown, Exercise.getInstance());
+                fragTrans.commit();
+            }
+        } catch(Exception e){}
 
     }
 

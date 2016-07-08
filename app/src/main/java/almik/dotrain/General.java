@@ -26,5 +26,9 @@ public class General extends Activity {
     @Override
     public void onBackPressed() {
         ///TODO ДОБАВИТЬ ОБРАБОТКУ кнопки назад в алерт диалог
+        fragTrans = getFragmentManager().beginTransaction();    ///set the fragment
+        if (fragTrans.isEmpty()){
+        fragTrans.replace(containerdown, StartFrament.getInstance());
+        fragTrans.commit();}
     }
 }

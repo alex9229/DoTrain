@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +33,7 @@ public class StartDialog implements OnClickListener {
         public StartDialog( Activity activity ){
             this.activity = activity;
             init();
+
         }
 
         private void init(){
@@ -50,6 +53,22 @@ public class StartDialog implements OnClickListener {
 
             dialog = builder.create();
             dialog.setTitle("Здраствуйте, введите нужную информацию");
+            dialog.setOnKeyListener(new Dialog.OnKeyListener() {
+
+                @Override
+                public boolean onKey(DialogInterface arg0, int keyCode,
+                                     KeyEvent event) {
+                    // TODO Auto-generated method stub
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        android.os.Process.killProcess(android.os.Process.myPid());//убивает насмерть
+                    }
+                    return true;
+                }
+            });
+//            dialog.setCancelable(false);   //Uncomit if need unclicable
+
+
+
         }
 
         public void show(){

@@ -32,9 +32,7 @@ public class StartFrament extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_start, container, false);
-
         startDialog = new StartDialog(getActivity());
-
         startDialog.show();
 
 

@@ -4,12 +4,15 @@ import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.util.concurrent.TimeUnit;
 
 import almik.dotrain.R;
 import almik.dotrain.Utill.TimeUtill;
@@ -20,6 +23,7 @@ import static almik.dotrain.R.id.containerdown;
 public class Rest extends Fragment {
     private TextView tVRest; //Place for text about rest
     private static Rest instanse;
+
     private SharedPreferences sPref; //place for Time of rest and Count
 
 
@@ -45,7 +49,9 @@ public class Rest extends Fragment {
         tVRest = (TextView) view.findViewById(R.id.tVTimer);
         sPref = getActivity().getSharedPreferences(getString(R.string.idShared), 1);
         new TimeUtill().ModeTime(tVRest, Integer.parseInt(sPref.getString(getString(R.string.TimeForRest), "")));
-        createDialog();
+        new Dial().execute();
+
+
         return view;
     }
 
@@ -60,24 +66,53 @@ public class Rest extends Fragment {
                 FragmentTransaction fragTrans = getFragmentManager().beginTransaction();
                 fragTrans.replace(containerdown, Exercise.getInstance());
                 fragTrans.commit();
+
             }
         } catch(Exception e){}
 
     }
 
 
-    private void createDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.Information);
-        builder.setMessage(R.string.TextInRest);
-        builder.setCancelable(true);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss(); // Отпускает диалоговое окно
+
+    class Dial extends AsyncTask<Void, Void, Void> {
+        AlertDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.Information);
+            builder.setMessage(R.string.TextInRest);
+            builder.setCancelable(true);
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() { // Кнопка ОК
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); // Отпускает диалоговое окно
+                }
+            });
+            dialog = builder.create();
+            dialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+//            try {
+//                    TimeUnit.SECONDS.sleep(1);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            if (dialog != null) {
+                dialog.cancel();
+                dialog.dismiss();
+                dialog = null;
             }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
+
+        }
     }
 }

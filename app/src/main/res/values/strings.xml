@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">DoTrain</string>
-
     <string name="action_settings">Settings</string>
     <string name="drawer_item_home">Home</string>
     <string name="drawer_item_free_play">Free Play</string>
@@ -15,8 +14,6 @@
     <string name="countInIntentToMain">count</string>
     <string name="timeRestInIntentToMain">Time</string>
     <string name="TextInRest">Сейчас вам лучше отдохнуть, выполнить махи руками, это поможет разогнать кровь!</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="idShared">Train</string>
     <string name="Count">Count</string>
@@ -26,4 +23,5 @@
     <string name="OneMore">Сделать еще упражнение</string>
     <string name="FinishTrain">Закончить тренировку</string>
     <string name="Information">Information</string>
+    <string name="timeToEndRest">До конца отдыха осталось:</string>
 </resources>

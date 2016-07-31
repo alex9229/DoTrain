@@ -12,11 +12,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import almik.dotrain.R;
 import almik.dotrain.fragments.Exercise;
+
 import static almik.dotrain.R.id.containerdown;
 public class StartDialog implements OnClickListener {
 
@@ -39,18 +39,12 @@ public class StartDialog implements OnClickListener {
         private void init(){
             LayoutInflater inflater = LayoutInflater.from( this.activity );
             View layout = inflater.inflate(R.layout.dialog_choise, null);
-
-
-
             btLounch=(Button)layout.findViewById(R.id.BtStart);
-        EtCount=(EditText)layout.findViewById(R.id.ETColPod);
-        EtTimeRest=(EditText)layout.findViewById(R.id.ETTimeRest);
-        btLounch.setOnClickListener(this);
-
-
+            EtCount=(EditText)layout.findViewById(R.id.ETColPod);
+            EtTimeRest=(EditText)layout.findViewById(R.id.ETTimeRest);
+            btLounch.setOnClickListener(this);
             AlertDialog.Builder builder = new AlertDialog.Builder( this.activity );
             builder.setView(layout);
-
             dialog = builder.create();
             dialog.setTitle("Здраствуйте, введите нужную информацию");
             dialog.setOnKeyListener(new Dialog.OnKeyListener() {
@@ -58,14 +52,13 @@ public class StartDialog implements OnClickListener {
                 @Override
                 public boolean onKey(DialogInterface arg0, int keyCode,
                                      KeyEvent event) {
-                    // TODO Auto-generated method stub
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         android.os.Process.killProcess(android.os.Process.myPid());//убивает насмерть
                     }
-                    return true;
+                    return false;//if true then can`t add number to editText
                 }
             });
-//            dialog.setCancelable(false);   //Uncomit if need unclicable
+            dialog.setCancelable(false);   //commit if need clicable
 
 
 
@@ -86,9 +79,6 @@ public class StartDialog implements OnClickListener {
                 ed.putString(activity.getString(R.string.Count), EtCount.getText().toString());
                 ed.putString(activity.getString(R.string.TimeForRest), EtTimeRest.getText().toString());
                 ed.commit();
-
-
-
                 FragmentTransaction fragTrans;
                 fragTrans = activity.getFragmentManager().beginTransaction();    ///set the fragment
                 fragTrans.replace(containerdown, Exercise.getInstance());

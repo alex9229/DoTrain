@@ -1,18 +1,16 @@
 package almik.dotrain.fragments;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.concurrent.TimeUnit;
 
 import almik.dotrain.R;
 import almik.dotrain.Utill.TimeUtill;
@@ -96,6 +94,7 @@ public class Rest extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
+//            регулятор загрузки
 //            try {
 //                    TimeUnit.SECONDS.sleep(1);
 //                } catch (InterruptedException e) {

@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
 
-import almik.dotrain.General;
 import almik.dotrain.fragments.Rest;
 
 /**
@@ -17,12 +16,12 @@ public class TimeUtill {
 
     public void ModeTime(TextView tvTime, Integer time) {
         this.tvTime = tvTime;
-        MyTask myTask = new MyTask();
-        myTask.execute();
+        TimeTask timeTask = new TimeTask();
+        timeTask.execute();
         this.time = time;
     }
 
-    class MyTask extends AsyncTask<Void, Integer, Void> {
+    class  TimeTask extends AsyncTask<Void, Integer, Void> {
 
         @Override
         protected void onPreExecute() {

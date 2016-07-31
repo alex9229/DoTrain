@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import almik.dotrain.R;
@@ -28,7 +26,7 @@ public class Exercise extends Fragment implements View.OnTouchListener {
     private SharedPreferences sPref;
 
     public Exercise() {
-        // Required empty public constructor
+        // Standard constructor
     }
 
 
@@ -51,11 +49,7 @@ public class Exercise extends Fragment implements View.OnTouchListener {
         View view = inflater.inflate(R.layout.fragment_exercise, container, false);
         FrameLayout ll = (FrameLayout) view.findViewById(R.id.FLexercise);
         ll.setOnTouchListener(this);// Устанавливаем данный класс в качестве слушателя MotionEvent'ов для нашего LinearLayout
-//        Intent intentfrom = getIntent();
-//        count=Integer.parseInt(intentfrom.getStringExtra(getString(R.string.countInIntentToMain)));
-//        timeofrest=Integer.parseInt(intentfrom.getStringExtra(getString(R.string.timeRestInIntentToMain)));
-//        КОСТЫЛЬ
-//
+
 
         sPref = getActivity().getSharedPreferences(getString(R.string.idShared), 1);
         count = Integer.parseInt(sPref.getString(getString(R.string.TimeForRest), ""));
@@ -95,7 +89,7 @@ public class Exercise extends Fragment implements View.OnTouchListener {
             });
             ad.setNegativeButton(R.string.FinishTrain, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int arg1) {
-//                    System.exit(0);
+//                    System.exit(0);//
 //
 //                    getActivity().finish();///мочит чисто активити
 
